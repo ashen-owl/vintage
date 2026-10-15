@@ -1,5 +1,6 @@
 ---
 import type { ImageContent, PieceVariant } from "@interfaces/index";
+import { withBase } from "@utils/with-base";
 
 interface Props {
   image: ImageContent;
@@ -21,7 +22,7 @@ const isPiece = variant === "chain" || variant === "signet" || variant === "lock
   ]}
   role="img"
   aria-label={image.alt}
-  style={`--panel-image: url("${image.src}")`}
+  style={`--panel-image: url("${withBase(image.src)}")`}
 >
   <slot />
 </div>
