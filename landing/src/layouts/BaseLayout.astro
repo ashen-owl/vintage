@@ -3,12 +3,16 @@ import "@styles/global.css";
 import SparkleField from "@components/ui/SparkleField.astro";
 import { skipLinkLabel } from "@data/site";
 import type { SiteMeta } from "@interfaces/index";
+import { withBase } from "@utils/with-base";
 
 interface Props {
   meta: SiteMeta;
 }
 
 const { meta } = Astro.props;
+const faviconHref = withBase("/favicon.svg");
+const ogImagePath = withBase(meta.ogImage);
+const ogImageUrl = Astro.site ? new URL(ogImagePath, Astro.site).href : ogImagePath;
 ---
 
 <!doctype html>
@@ -24,9 +28,9 @@ const { meta } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Marcellus+SC&family=MonteCarlo&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta property="og:image" content={meta.ogImage} />
+    <link rel="icon" href={faviconHref} type="image/svg+xml" />
+    <link rel="shortcut icon" href={faviconHref} type="image/svg+xml" />
+    <meta property="og:image" content={ogImageUrl} />
   </head>
   <body>
     <a
