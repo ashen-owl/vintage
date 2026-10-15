@@ -4,11 +4,21 @@ interface Props {
   labelledBy?: string;
   ariaLabel?: string;
   class?: string;
+  hasMobileBottomSpacing?: boolean;
 }
 
-const { id, labelledBy, ariaLabel, class: className } = Astro.props;
+const { id, labelledBy, ariaLabel, class: className, hasMobileBottomSpacing = true } = Astro.props;
 ---
 
-<section class:list={["section-observed", className]} id={id} aria-labelledby={labelledBy} aria-label={ariaLabel}>
+<section
+  class:list={[
+    "section-observed overflow-x-clip",
+    hasMobileBottomSpacing && "max-md:pb-[calc(var(--spacing-section)+1rem)]",
+    className,
+  ]}
+  id={id}
+  aria-labelledby={labelledBy}
+  aria-label={ariaLabel}
+>
   <slot />
 </section>

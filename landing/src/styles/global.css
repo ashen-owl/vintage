@@ -50,6 +50,7 @@
 
   --breakpoint-tablet: 45.0625rem;
   --breakpoint-desktop: 63.8125rem;
+  --breakpoint-menu: 62rem;
 }
 
 @layer base {

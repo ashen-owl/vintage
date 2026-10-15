@@ -33,11 +33,11 @@ const lastPromiseIndex = heroPromises.length - 1;
     <h1 id={titleId} data-split>{heroIntro.title}</h1>
     <p class="section-lead">{heroIntro.description}</p>
     <div
-      class="mt-8 flex flex-wrap flex-col items-stretch tablet:flex-row tablet:items-center gap-x-[1.35rem] gap-y-4"
+      class="mt-8 flex flex-wrap flex-col items-stretch md:flex-row md:items-center gap-x-[1.35rem] gap-y-4"
       aria-label={heroActionsAriaLabel}
     >
       <GoldWaveButton href={heroActions.primary.href}>{heroActions.primary.label}</GoldWaveButton>
-      <TextLink href={heroActions.secondary.href} class="max-tablet:self-start">{heroActions.secondary.label}</TextLink>
+      <TextLink href={heroActions.secondary.href} class="max-md:self-center max-md:after:origin-center">{heroActions.secondary.label}</TextLink>
     </div>
   </div>
 

@@ -20,3 +20,7 @@ export const headerCta: Link = {
   label: "Reserve the tray",
   href: "#appointment",
 };
+
+export const menuOpenLabel = "Open menu";
+
+export const menuCloseLabel = "Close menu";

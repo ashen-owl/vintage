@@ -1,18 +1,51 @@
 ---
 import ObservedSection from "@components/ui/ObservedSection.astro";
 import { serviceStandards, serviceStandardsAriaLabel } from "@data/service-standards";
+
+const marqueeCopies = [false, true];
 ---
 
-<ObservedSection ariaLabel={serviceStandardsAriaLabel} class="overflow-hidden border-y border-antique-gold/22 bg-old-lace/44">
+<ObservedSection
+  ariaLabel={serviceStandardsAriaLabel}
+  hasMobileBottomSpacing={false}
+  class="overflow-hidden border-y border-antique-gold/22 bg-old-lace/44">
   <div
-    class="marquee__track reveal grid justify-start text-left tablet:flex tablet:justify-center tablet:text-center gap-[clamp(1rem,3vw,3rem)] px-gutter py-4 text-antique-gold font-utility text-[clamp(0.68rem,1vw,0.82rem)] tracking-[0.15em] uppercase"
+    class="marquee__track reveal py-4 menu:px-gutter text-antique-gold font-utility text-[clamp(0.68rem,1vw,0.82rem)] tracking-[0.15em] uppercase"
   >
-    {serviceStandards.map((standard) => <span class="standard">{standard}</span>)}
+    <div class="marquee-rail">
+      {
+        marqueeCopies.map((isDuplicate) => (
+          <div class="marquee-group" aria-hidden={isDuplicate ? "true" : undefined} data-duplicate={isDuplicate || undefined}>
+            {serviceStandards.map((standard) => (
+              <span class="standard">{standard}</span>
+            ))}
+          </div>
+        ))
+      }
+    </div>
   </div>
 </ObservedSection>
 
 <style>
   @layer components {
+    .marquee-rail {
+      --marquee-gap: clamp(1rem, 3vw, 3rem);
+
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 32s linear infinite;
+    }
+
+    .marquee__track:hover .marquee-rail {
+      animation-play-state: paused;
+    }
+
+    .marquee-group {
+      display: flex;
+      gap: var(--marquee-gap);
+      padding-inline-end: var(--marquee-gap);
+    }
+
     .standard {
       display: inline-flex;
       align-items: center;
@@ -24,6 +57,47 @@ import { serviceStandards, serviceStandardsAriaLabel } from "@data/service-stand
       content: "✦";
       color: var(--color-champagne);
       font-size: 0.8rem;
+    }
+
+    @media (width >= 62rem) {
+      .marquee-rail {
+        width: auto;
+        justify-content: center;
+        animation: none;
+      }
+
+      .marquee-group {
+        padding-inline-end: 0;
+      }
+
+      .marquee-group[data-duplicate] {
+        display: none;
+      }
+    }
+
+    @media (width < 62rem) and (prefers-reduced-motion: reduce) {
+      .marquee-rail {
+        width: auto;
+        padding-inline: var(--spacing-gutter);
+        animation: none;
+      }
+
+      .marquee-group {
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 0.6rem;
+        padding-inline-end: 0;
+      }
+
+      .marquee-group[data-duplicate] {
+        display: none;
+      }
+    }
+  }
+
+  @keyframes marqueeScroll {
+    to {
+      translate: -50% 0;
     }
   }
 </style>
