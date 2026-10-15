@@ -1,0 +1,24 @@
+---
+import ObservedSection from "@components/ui/ObservedSection.astro";
+import Ornament from "@components/ui/Ornament.astro";
+import Eyebrow from "@components/ui/Eyebrow.astro";
+import PieceCard from "@components/ui/PieceCard.astro";
+import { collectionIntro, pieces } from "@data/collection";
+import { collectionOrnament } from "@data/ornaments";
+
+const titleId = `${collectionIntro.id}-title`;
+---
+
+<ObservedSection id={collectionIntro.id} labelledBy={titleId} class="relative px-gutter py-section">
+  <Ornament shape={collectionOrnament} class="top-[clamp(2.5rem,6vw,4rem)] right-gutter tablet:w-[min(50rem,64vw)]" />
+
+  <div class="section-heading reveal max-w-[46rem] mb-[clamp(2rem,4vw,4rem)]">
+    <Eyebrow text={collectionIntro.eyebrow} tone="lead" />
+    <h2 id={titleId} data-split>{collectionIntro.title}</h2>
+    <p class="section-lead">{collectionIntro.description}</p>
+  </div>
+
+  <div class="grid grid-cols-[1fr] desktop:grid-cols-3 items-end gap-[clamp(1rem,2vw,1.6rem)]">
+    {pieces.map((piece) => <PieceCard piece={piece} />)}
+  </div>
+</ObservedSection>

@@ -29,11 +29,16 @@ const { meta } = Astro.props;
     <meta property="og:image" content={meta.ogImage} />
   </head>
   <body>
-    <a class="skip-link" href="#main">{skipLinkLabel}</a>
+    <a
+      class="fixed top-3 left-3 z-20 -translate-y-[160%] focus:translate-y-0 px-4 py-[0.7rem] border border-antique-gold rounded-full text-old-ink bg-porcelain no-underline transition-transform duration-[220ms] ease-[ease]"
+      href="#main"
+    >
+      {skipLinkLabel}
+    </a>
     <SparkleField />
     <slot />
     <script>
-      import "@scripts/legacy-script.js";
+      import "@scripts/main";
     </script>
   </body>
 </html>

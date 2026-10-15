@@ -1,0 +1,26 @@
+---
+import { brandName } from "@data/site";
+
+interface Props {
+  href?: string;
+  ariaLabel?: string;
+}
+
+const { href, ariaLabel } = Astro.props;
+const scriptClass = "font-display text-[clamp(2rem,3vw,3.15rem)] leading-[0.82] tracking-[0.01em]";
+const smallClass = "font-utility text-[0.72rem] tracking-[0.2em] uppercase";
+---
+
+{
+  href ? (
+    <a href={href} aria-label={ariaLabel} class="inline-flex items-baseline gap-[0.22rem] no-underline whitespace-nowrap">
+      <span class={scriptClass}>{brandName.script}</span>
+      <span class={smallClass}>{brandName.small}</span>
+    </a>
+  ) : (
+    <div>
+      <span class={scriptClass}>{brandName.script}</span>{" "}
+      <span class={smallClass}>{brandName.small}</span>
+    </div>
+  )
+}

@@ -1,0 +1,92 @@
+---
+import type { VaultNoteContent } from "@interfaces/index";
+
+interface Props {
+  note: VaultNoteContent;
+  variant: "assay" | "seal";
+}
+
+const { note, variant } = Astro.props;
+---
+
+<div class:list={["vault-note", variant === "assay" ? "assay-card" : "seal-note"]} aria-label={note.ariaLabel}>
+  <span>{note.label}</span>
+  <strong>{note.value}</strong>
+  <small>{note.caption}</small>
+</div>
+
+<style>
+  @layer components {
+    .vault-note span,
+    .vault-note small {
+      display: block;
+      font-family: var(--font-utility);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .vault-note span {
+      font-size: 0.72rem;
+    }
+
+    .vault-note strong {
+      display: block;
+      margin: 0.35rem 0;
+      font-size: 2.2rem;
+      line-height: 0.92;
+    }
+
+    .vault-note small {
+      font-size: 0.63rem;
+      line-height: 1.65;
+    }
+
+    .assay-card {
+      position: absolute;
+      right: 1.1rem;
+      bottom: 1.1rem;
+      width: min(15rem, calc(100% - 2.2rem));
+      padding: 1rem;
+      border: 1px solid color-mix(in srgb, var(--color-antique-gold) 36%, transparent);
+      border-radius: var(--radius-card);
+      background: color-mix(in srgb, var(--color-porcelain) 84%, transparent);
+      box-shadow: 0 0.8rem 1.8rem color-mix(in srgb, var(--color-umber) 14%, transparent);
+      backdrop-filter: blur(12px);
+    }
+
+    .assay-card span {
+      color: var(--color-antique-gold);
+    }
+
+    .assay-card strong {
+      color: var(--color-old-ink);
+    }
+
+    .assay-card small {
+      color: var(--color-soft-ink);
+    }
+
+    .seal-note {
+      width: min(100%, 18rem);
+      margin-top: 2rem;
+      padding: 1.2rem;
+      border: 1px solid color-mix(in srgb, var(--color-wax-seal) 28%, transparent);
+      border-radius: 50% 50% 48% 52% / 48% 52% 50% 50%;
+      color: var(--color-porcelain);
+      text-align: center;
+      background:
+        radial-gradient(circle at 35% 22%, color-mix(in srgb, var(--color-white) 28%, transparent), transparent 2.8rem),
+        var(--color-wax-seal);
+      box-shadow: 0 1rem 2rem color-mix(in srgb, var(--color-wax-seal) 20%, transparent);
+    }
+
+    .seal-note span,
+    .seal-note small {
+      color: color-mix(in srgb, var(--color-gilt-cream) 78%, transparent);
+    }
+
+    .seal-note strong {
+      color: var(--color-porcelain);
+    }
+  }
+</style>

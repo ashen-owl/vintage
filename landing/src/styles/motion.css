@@ -25,12 +25,12 @@
   width: 0.26em;
 }
 
-.section-observed.is-visible [data-split-heading="ready"] .char,
-.site-footer.is-visible [data-split-heading="ready"] .char {
+.section-observed.is-visible [data-split-heading="ready"] .char {
   opacity: 1;
   transform: translateY(0) rotate(0);
   filter: blur(0);
 }
+
 .ornament path {
   fill: none;
   stroke: currentColor;
@@ -46,6 +46,7 @@
   animation: drawFiligree 2.35s var(--ease-ceremony) forwards;
   animation-delay: var(--draw-delay, 0ms);
 }
+
 .reveal {
   opacity: 0;
   transform: translateY(28px) scale(0.992);
@@ -95,7 +96,6 @@
 }
 
 .section-heading,
-.hero-ledger,
 .ledger-grid,
 .ledger-grid div,
 .craft-steps li,
@@ -245,29 +245,12 @@
   background-position: center 58%;
 }
 
-@keyframes goldWave {
-  0% {
-    transform: translateX(-62%) scaleX(1.08);
-  }
-  100% {
-    transform: translateX(62%) scaleX(1.28);
-  }
-}
-
 @keyframes drawFiligree {
   to {
     stroke-dashoffset: 0;
   }
 }
 
-@keyframes glintDrift {
-  0% {
-    background-position: 8% 12%, 78% 24%, 46% 72%;
-  }
-  100% {
-    background-position: 16% 18%, 70% 30%, 52% 64%;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -289,13 +272,5 @@
 
   .ornament path {
     stroke-dashoffset: 0;
-  }
-
-  .gold-wave-button::before {
-    transform: translateX(0) scaleX(1);
-  }
-
-  .gold-wave-button::after {
-    display: none;
   }
 }

@@ -1,0 +1,33 @@
+---
+import type { OrnamentShape } from "@interfaces/index";
+
+interface Props {
+  shape: OrnamentShape;
+  class: string;
+}
+
+const { shape, class: className } = Astro.props;
+---
+
+<svg class:list={["ornament max-tablet:w-[38rem] max-tablet:max-w-none", className]} viewBox={shape.viewBox} aria-hidden="true">
+  {shape.paths.map((path) => <path d={path} />)}
+</svg>
+
+<style>
+  @layer components {
+    .ornament {
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      overflow: visible;
+      color: var(--color-champagne);
+      opacity: 0.95;
+    }
+
+    @media (max-width: 720px) {
+      .ornament {
+        opacity: 0.55;
+      }
+    }
+  }
+</style>

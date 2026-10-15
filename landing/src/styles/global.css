@@ -1,9 +1,9 @@
-@import "tailwindcss";
-@import "./legacy.css";
-@import "./motion.css";
-@import "./legacy-responsive.css";
+@layer theme, base, components, utilities, motion;
 
-@theme {
+@import "tailwindcss";
+@import "./motion.css" layer(motion);
+
+@theme static {
   --color-porcelain: #fbf7ee;
   --color-old-lace: #efe3cb;
   --color-champagne: #d8b66a;
@@ -16,6 +16,11 @@
   --color-candle-glow: #fff6d6;
   --color-gilt-cream: #fff5d5;
   --color-field-focus: #fffaf0;
+  --color-linen: #fffaef;
+  --color-ivory-shine: #fffae8;
+  --color-gold-shine: #ffefae;
+  --color-shadow-brown: #2f201d;
+  --color-white: #fff;
 
   --color-fallback-cream: #efe2c8;
   --color-fallback-hero-start: #eadfca;
@@ -171,5 +176,35 @@
     h2 {
       max-width: 11ch;
     }
+  }
+}
+
+@layer components {
+  .underline-draw {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .underline-draw::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.28rem;
+    height: 1px;
+    transform: scaleX(0.2);
+    transform-origin: left;
+    background: var(--color-antique-gold);
+    transition: transform 280ms ease;
+  }
+
+  .underline-draw:hover::after {
+    transform: scaleX(1);
+  }
+
+  .section-lead {
+    max-width: 38rem;
+    color: var(--color-soft-ink);
+    font-size: clamp(1.18rem, 0.7vw + 1rem, 1.62rem);
   }
 }

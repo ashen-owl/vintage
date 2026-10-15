@@ -1,0 +1,43 @@
+---
+import FormField from "@components/ui/FormField.astro";
+import GoldWaveButton from "@components/ui/GoldWaveButton.astro";
+import { appointmentFields, submitLabel } from "@data/appointment";
+---
+
+<form
+  class="appointment-form reveal grid grid-cols-[1fr] tablet:grid-cols-2 gap-4 p-[clamp(1.1rem,3vw,2rem)]"
+  style="--reveal-delay: 160ms"
+  novalidate
+  data-appointment-form
+>
+  {appointmentFields.map((field) => <FormField field={field} />)}
+  <GoldWaveButton type="submit" class="appointment-form__button tablet:col-span-full">
+    {submitLabel}
+  </GoldWaveButton>
+  <p class="form-status tablet:col-span-full min-h-[1.2rem] m-0" role="status" aria-live="polite" data-form-status></p>
+</form>
+
+<script>
+  import { initAppointmentForm } from "@scripts/appointment-form";
+
+  initAppointmentForm();
+</script>
+
+<style>
+  @layer components {
+    .appointment-form {
+      border: 1px solid color-mix(in srgb, var(--color-antique-gold) 28%, transparent);
+      border-radius: var(--radius-soft);
+      background: color-mix(in srgb, var(--color-linen) 78%, transparent);
+      box-shadow: 0 1.5rem 3rem color-mix(in srgb, var(--color-umber) 16%, transparent);
+    }
+
+    .form-status {
+      color: var(--color-wax-seal);
+      font-family: var(--font-utility);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+  }
+</style>

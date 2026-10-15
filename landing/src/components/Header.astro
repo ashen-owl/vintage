@@ -1,0 +1,21 @@
+---
+import BrandMark from "@components/ui/BrandMark.astro";
+import GoldWaveButton from "@components/ui/GoldWaveButton.astro";
+import { brandHomeLink, headerAriaLabel, headerCta, navAriaLabel, primaryNav } from "@data/navigation";
+---
+
+<header
+  class="relative tablet:sticky top-0 z-10 grid grid-cols-[1fr_auto] desktop:grid-cols-[auto_1fr_auto] items-center gap-[clamp(1rem,2vw,2rem)] px-gutter pt-4 pb-[0.9rem] tablet:pt-[0.9rem] border-b border-antique-gold/18 bg-porcelain/84 backdrop-blur-[18px]"
+  aria-label={headerAriaLabel}
+>
+  <BrandMark href={brandHomeLink.href} ariaLabel={brandHomeLink.label} />
+  <nav
+    class="col-span-full justify-self-start w-full overflow-x-auto pb-[0.15rem] desktop:col-auto desktop:justify-self-center desktop:w-auto desktop:overflow-x-visible desktop:pb-0 flex items-center gap-4 tablet:gap-[clamp(0.7rem,2vw,1.7rem)] font-utility text-[0.64rem] tablet:text-[0.72rem] tracking-[0.14em] uppercase"
+    aria-label={navAriaLabel}
+  >
+    {primaryNav.map((link) => <a class="underline-draw" href={link.href}>{link.label}</a>)}
+  </nav>
+  <GoldWaveButton href={headerCta.href} size="small" class="max-tablet:hidden">
+    {headerCta.label}
+  </GoldWaveButton>
+</header>

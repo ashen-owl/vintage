@@ -1,1 +1,29 @@
 <div class="sparkle-field" aria-hidden="true"></div>
+
+<style>
+  @layer components {
+    .sparkle-field {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.75;
+      background-image:
+        radial-gradient(circle, color-mix(in srgb, var(--color-white) 92%, transparent) 0 1px, transparent 1.6px),
+        radial-gradient(circle, color-mix(in srgb, var(--color-champagne) 76%, transparent) 0 1px, transparent 1.8px),
+        radial-gradient(circle, color-mix(in srgb, var(--color-antique-gold) 35%, transparent) 0 0.8px, transparent 1.5px);
+      background-position: 8% 12%, 78% 24%, 46% 72%;
+      background-size: 180px 210px, 260px 240px, 340px 320px;
+      animation: glintDrift 18s linear infinite;
+    }
+  }
+
+  @keyframes glintDrift {
+    0% {
+      background-position: 8% 12%, 78% 24%, 46% 72%;
+    }
+    100% {
+      background-position: 16% 18%, 70% 30%, 52% 64%;
+    }
+  }
+</style>

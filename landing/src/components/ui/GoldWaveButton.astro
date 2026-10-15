@@ -1,0 +1,145 @@
+---
+interface Props {
+  href?: string;
+  type?: "button" | "submit";
+  size?: "default" | "small";
+  class?: string;
+}
+
+const { href, type = "button", size = "default", class: className } = Astro.props;
+const classes = ["gold-wave-button", size === "small" && "gold-wave-button--small", className];
+---
+
+{
+  href ? (
+    <a href={href} class:list={classes}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class:list={classes}>
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  @layer components {
+    .gold-wave-button {
+      position: relative;
+      isolation: isolate;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.25rem;
+      padding: 0.82rem 1.28rem;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--color-antique-gold) 62%, transparent);
+      border-radius: 999px;
+      color: var(--color-old-ink);
+      background:
+        linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--color-white) 38%, transparent),
+          transparent 44%,
+          color-mix(in srgb, var(--color-antique-gold) 12%, transparent)
+        ),
+        linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--color-ivory-shine) 98%, transparent),
+          color-mix(in srgb, var(--color-champagne) 46%, transparent)
+        ),
+        var(--color-old-lace);
+      box-shadow: 0 0.65rem 1.8rem color-mix(in srgb, var(--color-antique-gold) 14%, transparent);
+      font-family: var(--font-utility);
+      font-size: 0.78rem;
+      letter-spacing: 0.11em;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition:
+        box-shadow 380ms var(--ease-ceremony),
+        border-color 380ms ease,
+        background-color 380ms ease;
+    }
+
+    .gold-wave-button::before {
+      content: "";
+      position: absolute;
+      inset: 0 -80%;
+      z-index: -1;
+      background:
+        radial-gradient(56% 170% at 50% 50%, color-mix(in srgb, var(--color-white) 88%, transparent) 0 7%, transparent 31%),
+        radial-gradient(68% 170% at 50% 50%, color-mix(in srgb, var(--color-gold-shine) 82%, transparent) 0 19%, transparent 49%),
+        radial-gradient(78% 180% at 50% 50%, color-mix(in srgb, var(--color-antique-gold) 42%, transparent) 0 26%, transparent 63%);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      transform: translateX(-62%) scaleX(1.08);
+      animation: goldWave 8.4s linear infinite;
+      transition: filter 420ms ease, opacity 420ms ease;
+      will-change: transform;
+    }
+
+    .gold-wave-button::after {
+      content: "";
+      position: absolute;
+      inset: 0 -80%;
+      z-index: -1;
+      background:
+        radial-gradient(56% 170% at 50% 50%, color-mix(in srgb, var(--color-white) 82%, transparent) 0 7%, transparent 31%),
+        radial-gradient(68% 170% at 50% 50%, color-mix(in srgb, var(--color-gold-shine) 76%, transparent) 0 19%, transparent 49%),
+        radial-gradient(78% 180% at 50% 50%, color-mix(in srgb, var(--color-antique-gold) 34%, transparent) 0 26%, transparent 63%);
+      background-repeat: no-repeat;
+      opacity: 0;
+      transform: translateX(-62%) scaleX(1.08);
+      animation: goldWave 2.35s linear infinite;
+      transition: opacity 520ms ease, filter 520ms ease;
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+
+    .gold-wave-button:hover {
+      border-color: var(--color-antique-gold);
+      box-shadow: 0 0.9rem 2rem color-mix(in srgb, var(--color-antique-gold) 18%, transparent);
+    }
+
+    .gold-wave-button:hover::before {
+      opacity: 0.72;
+      filter: saturate(1.04) brightness(1.03);
+    }
+
+    .gold-wave-button:hover::after {
+      opacity: 0.58;
+      filter: saturate(1.08) brightness(1.05);
+    }
+
+    .gold-wave-button:active {
+      box-shadow: 0 0.45rem 1.2rem color-mix(in srgb, var(--color-antique-gold) 16%, transparent);
+    }
+
+    .gold-wave-button--small {
+      min-height: 2.5rem;
+      padding: 0.65rem 0.95rem;
+      font-size: 0.66rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gold-wave-button::before {
+        transform: translateX(0) scaleX(1);
+      }
+
+      .gold-wave-button::after {
+        display: none;
+      }
+    }
+  }
+
+  @keyframes goldWave {
+    0% {
+      transform: translateX(-62%) scaleX(1.08);
+    }
+    100% {
+      transform: translateX(62%) scaleX(1.28);
+    }
+  }
+</style>

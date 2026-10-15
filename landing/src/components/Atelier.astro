@@ -1,0 +1,55 @@
+---
+import ObservedSection from "@components/ui/ObservedSection.astro";
+import Ornament from "@components/ui/Ornament.astro";
+import Eyebrow from "@components/ui/Eyebrow.astro";
+import ImagePanel from "@components/ui/ImagePanel.astro";
+import { atelierImage, atelierIntro, craftSteps, craftStepsAriaLabel } from "@data/atelier";
+import { atelierOrnament } from "@data/ornaments";
+
+const titleId = `${atelierIntro.id}-title`;
+---
+
+<ObservedSection
+  id={atelierIntro.id}
+  labelledBy={titleId}
+  class="relative grid grid-cols-[1fr] desktop:grid-cols-[minmax(17rem,0.8fr)_minmax(0,1fr)] items-center gap-[clamp(2rem,5vw,6rem)] px-gutter py-section"
+>
+  <Ornament shape={atelierOrnament} class="left-[4vw] bottom-8 tablet:w-[min(40rem,55vw)]" />
+
+  <ImagePanel
+    image={atelierImage}
+    variant="atelier"
+    class="atelier__image reveal order-2 desktop:order-none min-h-[clamp(28rem,48vw,42rem)]"
+  />
+
+  <div class="reveal" style="--reveal-delay: 140ms">
+    <Eyebrow text={atelierIntro.eyebrow} tone="lead" />
+    <h2 id={titleId} data-split>{atelierIntro.title}</h2>
+    <p class="section-lead">{atelierIntro.description}</p>
+
+    <ol class="craft-steps grid gap-4 mt-8 p-0 list-none" aria-label={craftStepsAriaLabel}>
+      {
+        craftSteps.map((step) => (
+          <li class="grid grid-cols-[1fr] tablet:grid-cols-[3.2rem_1fr] gap-x-4 gap-y-[0.8rem] py-[1.1rem] border-t border-transparent">
+            <span>{step.number}</span>
+            <strong class="text-[1.4rem] leading-[1.1]" data-split>{step.title}</strong>
+            <p class="m-0 text-soft-ink">{step.description}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</ObservedSection>
+
+<style>
+  @layer components {
+    .craft-steps :global(span) {
+      grid-row: span 2;
+      color: var(--color-wax-seal);
+      font-family: var(--font-utility);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+  }
+</style>
