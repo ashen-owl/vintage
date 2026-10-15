@@ -1,0 +1,39 @@
+---
+import "@styles/global.css";
+import SparkleField from "@components/ui/SparkleField.astro";
+import { skipLinkLabel } from "@data/site";
+import type { SiteMeta } from "@interfaces/index";
+
+interface Props {
+  meta: SiteMeta;
+}
+
+const { meta } = Astro.props;
+---
+
+<!doctype html>
+<html lang={meta.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Marcellus+SC&family=MonteCarlo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:image" content={meta.ogImage} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{skipLinkLabel}</a>
+    <SparkleField />
+    <slot />
+    <script>
+      import "@scripts/legacy-script.js";
+    </script>
+  </body>
+</html>

@@ -1,13 +1,300 @@
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Aurelia & Thorn | Vintage Gold Jewellery</title>
-	</head>
-	<body>
-		<h1>Aurelia & Thorn | Vintage Gold Jewellery</h1>
-	</body>
-</html>
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { siteMeta } from "@data/site";
+---
+
+<BaseLayout meta={siteMeta}>
+  <header class="site-header" aria-label="Aurelia & Thorn site header">
+    <a class="brand-mark" href="#top" aria-label="Aurelia & Thorn home">
+      <span class="brand-mark__script">Aurelia</span>
+      <span class="brand-mark__small">& Thorn</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="#collection">Collection</a>
+      <a href="#provenance">Provenance</a>
+      <a href="#atelier">Restoration</a>
+      <a href="#appointment">Private viewing</a>
+    </nav>
+    <a class="gold-wave-button gold-wave-button--small" href="#appointment">
+      Reserve the tray
+    </a>
+  </header>
+
+  <main id="main">
+    <section class="hero section-observed" id="top" aria-labelledby="hero-title">
+      <svg class="ornament hero-ornament" viewBox="0 0 620 620" aria-hidden="true">
+        <path d="M310 28 C230 82 197 154 224 226 C247 287 314 285 322 230 C331 165 248 155 210 212 C164 282 214 390 310 414 C414 440 494 365 473 278 C456 209 374 206 356 263 C336 327 424 347 462 288" />
+        <path d="M92 500 C180 462 242 486 310 559 C378 486 440 462 528 500" />
+        <path d="M97 126 C166 111 213 77 239 38" />
+        <path d="M381 38 C407 77 454 111 523 126" />
+      </svg>
+
+      <div class="hero__copy reveal">
+        <p class="eyebrow">Private ledger · Vintage gold jewellery</p>
+        <h1 id="hero-title">Gold with a century under its skin.</h1>
+        <p class="hero__intro">
+          Rare 18k pieces, restored by hand, documented like archive objects,
+          and presented by appointment before they return to the vault.
+        </p>
+        <div class="hero__actions" aria-label="Primary actions">
+          <a class="gold-wave-button" href="#appointment">Request a private viewing</a>
+          <a class="text-link" href="#collection">Open the collection</a>
+        </div>
+      </div>
+
+      <div class="hero__vitrine reveal" style="--reveal-delay: 160ms">
+        <div
+          class="image-panel hero-image"
+          role="img"
+          aria-label="Antique gold necklace resting on an ivory velvet presentation tray"
+        >
+          <div class="assay-card" aria-label="Featured piece details">
+            <span>Vault note</span>
+            <strong>No. 07</strong>
+            <small>Edwardian collar · 18k yellow gold · hand-restored clasp</small>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-ledger reveal" style="--reveal-delay: 280ms" aria-label="House promises">
+        <span>Hallmarked</span>
+        <span>Hand restored</span>
+        <span>Reserved privately</span>
+      </aside>
+    </section>
+
+    <section class="marquee section-observed" aria-label="Service standards">
+      <div class="marquee__track reveal">
+        <span>18k and higher only</span>
+        <span>Era notes included</span>
+        <span>Two-week hold for serious buyers</span>
+        <span>Insured courier after final fitting</span>
+      </div>
+    </section>
+
+    <section class="collection section-observed" id="collection" aria-labelledby="collection-title">
+      <svg class="ornament collection-ornament" viewBox="0 0 820 360" aria-hidden="true">
+        <path d="M34 179 C118 92 249 92 318 172 C374 236 458 236 514 172 C583 92 714 92 786 179" />
+        <path d="M173 176 C149 148 153 114 183 99 C216 82 251 112 236 148 C224 176 190 179 173 176" />
+        <path d="M646 176 C670 148 666 114 636 99 C603 82 568 112 583 148 C595 176 629 179 646 176" />
+        <path d="M327 191 C385 139 435 139 493 191" />
+      </svg>
+
+      <div class="section-heading reveal">
+        <p class="eyebrow">The current tray</p>
+        <h2 id="collection-title">Three kinds of gold, each with a different past life.</h2>
+        <p>
+          The collection is deliberately small. We would rather show fewer pieces with
+          cleaner provenance than fill a page with lookalikes.
+        </p>
+      </div>
+
+      <div class="collection-grid">
+        <article class="piece-card piece-card--from-left reveal" style="--reveal-delay: 90ms">
+          <div
+            class="piece-card__image image-panel collection-chain"
+            role="img"
+            aria-label="Vintage gold chain necklace on cream silk"
+          ></div>
+          <div class="piece-card__body">
+            <p class="piece-card__kicker">Soft shine · daily heirloom</p>
+            <h3>Rope chains with lived-in light</h3>
+            <p>
+              Substantial links, warm patina, and clasps rebuilt to survive another generation.
+            </p>
+            <div class="piece-card__meta">
+              <span>18k yellow gold</span>
+              <span>From $2,800</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="piece-card piece-card--tall piece-card--from-center reveal" style="--reveal-delay: 300ms">
+          <div
+            class="piece-card__image image-panel collection-signet"
+            role="img"
+            aria-label="Oval vintage gold signet ring with worn engraving"
+          ></div>
+          <div class="piece-card__body">
+            <p class="piece-card__kicker">Wax seal character</p>
+            <h3>Signets that still feel slightly secret</h3>
+            <p>
+              Rings selected for weight, hand engraving, and the small irregularities that prove the work.
+            </p>
+            <div class="piece-card__meta">
+              <span>14k to 22k gold</span>
+              <span>From $1,950</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="piece-card piece-card--from-right reveal" style="--reveal-delay: 510ms">
+          <div
+            class="piece-card__image image-panel collection-locket"
+            role="img"
+            aria-label="Antique gold locket with engraved border"
+          ></div>
+          <div class="piece-card__body">
+            <p class="piece-card__kicker">Portrait-ready pieces</p>
+            <h3>Lockets and cuffs with room for ritual</h3>
+            <p>
+              Hinges are tested, interiors cleaned, and engraving is preserved unless you ask us to add yours.
+            </p>
+            <div class="piece-card__meta">
+              <span>Documented era note</span>
+              <span>From $3,400</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="provenance section-observed" id="provenance" aria-labelledby="provenance-title">
+      <svg class="ornament provenance-ornament" viewBox="0 0 780 420" aria-hidden="true">
+        <path d="M104 73 C207 37 312 69 389 163 C466 69 571 37 676 73" />
+        <path d="M389 164 C360 209 355 267 389 342 C423 267 418 209 389 164" />
+        <path d="M196 295 C260 250 312 262 353 316" />
+        <path d="M582 295 C518 250 466 262 425 316" />
+        <path d="M109 74 C131 115 126 163 85 193" />
+        <path d="M671 74 C649 115 654 163 695 193" />
+      </svg>
+
+      <div class="provenance__paper reveal">
+        <p class="eyebrow">Paper trail before romance</p>
+        <h2 id="provenance-title">A piece is only desirable when its story can be handled.</h2>
+        <p>
+          Every jewel is catalogued as an object first: hallmarks, repairs, setting condition,
+          sizing limits, and the kind of wear a buyer should expect.
+        </p>
+      </div>
+
+      <dl class="ledger-grid reveal" style="--reveal-delay: 160ms">
+        <div>
+          <dt>Hallmark</dt>
+          <dd>Photographed, decoded, and included in the appointment notes.</dd>
+        </div>
+        <div>
+          <dt>Metal</dt>
+          <dd>Acid-tested when marks are unclear. Gold purity is stated plainly.</dd>
+        </div>
+        <div>
+          <dt>Restoration</dt>
+          <dd>Clasps, hinges, and settings are repaired without polishing away age.</dd>
+        </div>
+        <div>
+          <dt>Reserve</dt>
+          <dd>A chosen piece can be held for two weeks while you decide.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="atelier section-observed" id="atelier" aria-labelledby="atelier-title">
+      <svg class="ornament atelier-ornament" viewBox="0 0 720 460" aria-hidden="true">
+        <path d="M78 350 C139 270 208 270 267 350 C326 430 394 430 453 350 C512 270 581 270 642 350" />
+        <path d="M360 65 C322 126 323 185 360 238 C397 185 398 126 360 65" />
+        <path d="M245 204 C297 174 334 187 360 238" />
+        <path d="M475 204 C423 174 386 187 360 238" />
+        <path d="M141 117 C193 141 214 185 199 248" />
+        <path d="M579 117 C527 141 506 185 521 248" />
+      </svg>
+
+      <div
+        class="atelier__image image-panel atelier-bench reveal"
+        role="img"
+        aria-label="Jeweller's bench with vintage tools and a gold ring under repair"
+      ></div>
+
+      <div class="atelier__content reveal" style="--reveal-delay: 140ms">
+        <p class="eyebrow">Restoration etiquette</p>
+        <h2 id="atelier-title">We make the jewel safe to wear, not new to look at.</h2>
+        <p>
+          Old gold carries tool marks, softened edges, and tiny asymmetries. Those are not flaws.
+          They are the proof of time, so our repairs stay quiet.
+        </p>
+
+        <ol class="craft-steps" aria-label="Restoration sequence">
+          <li>
+            <span>01</span>
+            <strong>Inspect the stress points</strong>
+            <p>Clasps, hinges, bezels, and solder seams are checked before any polish touches the surface.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <strong>Repair under magnification</strong>
+            <p>Only structural issues are corrected. Engraving, patina, and hand-finished edges remain intact.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <strong>Prepare for ownership</strong>
+            <p>The piece leaves with care notes, sizing guidance, and a record of work completed.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="appointment section-observed" id="appointment" aria-labelledby="appointment-title">
+      <svg class="ornament appointment-ornament" viewBox="0 0 760 500" aria-hidden="true">
+        <path d="M88 101 C174 47 261 68 321 160 C344 195 416 195 439 160 C499 68 586 47 672 101" />
+        <path d="M88 399 C174 453 261 432 321 340 C344 305 416 305 439 340 C499 432 586 453 672 399" />
+        <path d="M381 112 C331 172 331 328 381 388 C431 328 431 172 381 112" />
+        <path d="M183 250 C251 206 311 215 348 275" />
+        <path d="M577 250 C509 206 449 215 412 275" />
+      </svg>
+
+      <div class="appointment__copy reveal">
+        <p class="eyebrow">Private viewing</p>
+        <h2 id="appointment-title">Ask us to lay out the tray.</h2>
+        <p>
+          Tell us what you are looking for. We will reply with available pieces,
+          provenance notes, and viewing times before anything is listed publicly.
+        </p>
+        <div class="seal-note" aria-label="Private reserve policy">
+          <span>Wax-sealed reserve</span>
+          <strong>Two weeks</strong>
+          <small>No pressure, no public listing while the piece is held.</small>
+        </div>
+      </div>
+
+      <form class="appointment-form reveal" style="--reveal-delay: 160ms" novalidate>
+        <div class="field-group">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
+          <span class="field-error" data-error-for="name"></span>
+        </div>
+        <div class="field-group">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+          <span class="field-error" data-error-for="email"></span>
+        </div>
+        <div class="field-group field-group--full">
+          <label for="piece">What should we prepare?</label>
+          <select id="piece" name="piece" required>
+            <option value="">Choose a tray</option>
+            <option value="chains">Gold chains</option>
+            <option value="signets">Signet rings</option>
+            <option value="lockets">Lockets and cuffs</option>
+            <option value="gift">A gift consultation</option>
+          </select>
+          <span class="field-error" data-error-for="piece"></span>
+        </div>
+        <div class="field-group field-group--full">
+          <label for="note">Useful details</label>
+          <textarea id="note" name="note" rows="4" placeholder="Era, budget, ring size, gift date, or a piece you already own."></textarea>
+        </div>
+        <button class="gold-wave-button appointment-form__button" type="submit">
+          Request appointment
+        </button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <span class="brand-mark__script">Aurelia</span>{" "}
+      <span class="brand-mark__small">& Thorn</span>
+    </div>
+    <p>Vintage gold jewellery · documented, restored, and reserved privately.</p>
+    <a class="text-link" href="#top">Return to the first tray</a>
+  </footer>
+</BaseLayout>

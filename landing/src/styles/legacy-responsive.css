@@ -1,0 +1,132 @@
+@media (max-width: 1020px) {
+  .site-header {
+    grid-template-columns: 1fr auto;
+  }
+
+  .site-nav {
+    grid-column: 1 / -1;
+    justify-self: start;
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 0.15rem;
+  }
+
+  .hero,
+  .provenance,
+  .atelier,
+  .appointment {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-bottom: calc(var(--spacing-section) + 4rem);
+  }
+
+  .hero__vitrine {
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  .collection-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .piece-card,
+  .piece-card--tall {
+    min-height: 33rem;
+  }
+
+  .atelier__image {
+    order: 2;
+  }
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    position: relative;
+    padding-top: 1rem;
+  }
+
+  .site-header > .gold-wave-button {
+    display: none;
+  }
+
+  .site-nav {
+    gap: 1rem;
+    font-size: 0.64rem;
+  }
+
+  .hero {
+    gap: 2.2rem;
+    padding-top: 3.3rem;
+  }
+
+  .hero__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero__actions .text-link {
+    align-self: flex-start;
+  }
+
+  .hero-image {
+    min-height: 27rem;
+  }
+
+  .hero-ledger {
+    grid-template-columns: 1fr;
+  }
+
+  .piece-card__meta {
+    flex-direction: column;
+  }
+
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hero-ledger {
+    position: static;
+    margin: 1rem var(--spacing-gutter) 0;
+  }
+
+  .hero-ledger span:not(:last-child) {
+    border-right: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-antique-gold) 18%, transparent);
+    padding-bottom: 0.7rem;
+  }
+
+  .marquee__track {
+    display: grid;
+    justify-content: start;
+    text-align: left;
+  }
+
+  .ledger-grid div,
+  .craft-steps li,
+  .appointment-form {
+    grid-template-columns: 1fr;
+  }
+
+  .field-group--full,
+  .appointment-form__button,
+  .form-status {
+    grid-column: auto;
+  }
+
+  .ornament {
+    opacity: 0.55;
+  }
+
+  .hero-ornament,
+  .collection-ornament,
+  .provenance-ornament,
+  .atelier-ornament,
+  .appointment-ornament {
+    width: 38rem;
+    max-width: none;
+  }
+}

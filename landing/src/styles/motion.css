@@ -1,0 +1,301 @@
+[data-split-heading="ready"] {
+  --char-step: 20ms;
+}
+
+[data-split-heading="ready"] .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.72em) rotate(3deg);
+  transform-origin: 50% 85%;
+  filter: blur(7px);
+  transition:
+    opacity 900ms var(--ease-ceremony),
+    transform 1050ms var(--ease-ceremony),
+    filter 1050ms var(--ease-ceremony);
+  transition-delay: calc(var(--headline-delay, 0ms) + var(--char-delay, 0ms));
+  will-change: opacity, transform, filter;
+}
+
+[data-split-heading="ready"] .word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+[data-split-heading="ready"] .char--space {
+  width: 0.26em;
+}
+
+.section-observed.is-visible [data-split-heading="ready"] .char,
+.site-footer.is-visible [data-split-heading="ready"] .char {
+  opacity: 1;
+  transform: translateY(0) rotate(0);
+  filter: blur(0);
+}
+.ornament path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--path-length, 1);
+  stroke-dashoffset: var(--path-length, 1);
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--color-champagne) 28%, transparent));
+}
+
+.section-observed.is-visible .ornament path {
+  animation: drawFiligree 2.35s var(--ease-ceremony) forwards;
+  animation-delay: var(--draw-delay, 0ms);
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(28px) scale(0.992);
+  transition:
+    opacity 980ms var(--ease-ceremony) var(--reveal-delay, 0ms),
+    transform 980ms var(--ease-ceremony) var(--reveal-delay, 0ms),
+    clip-path 1200ms var(--ease-ceremony) var(--reveal-delay, 0ms);
+}
+
+.section-observed.is-visible .reveal,
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.hero__vitrine.reveal,
+.atelier__image.reveal {
+  clip-path: inset(8% 7% 0 7% round var(--radius-soft));
+}
+
+.section-observed.is-visible .hero__vitrine.reveal,
+.section-observed.is-visible .atelier__image.reveal {
+  clip-path: inset(0 0 0 0 round var(--radius-soft));
+}
+
+.piece-card.reveal {
+  transform: translateY(38px) scale(0.965);
+}
+
+.piece-card--from-left.reveal {
+  transform: translateX(-7rem) translateY(34px) rotate(-1.4deg) scale(0.965);
+}
+
+.piece-card--from-center.reveal {
+  transform: translateY(52px) scale(0.95);
+}
+
+.piece-card--from-right.reveal {
+  transform: translateX(7rem) translateY(34px) rotate(1.4deg) scale(0.965);
+}
+
+.section-observed.is-visible .piece-card.reveal,
+.section-observed.is-visible .piece-card--from-left.reveal,
+.section-observed.is-visible .piece-card--from-center.reveal,
+.section-observed.is-visible .piece-card--from-right.reveal {
+  transform: translateY(0) rotate(0) scale(1);
+}
+
+.section-heading,
+.hero-ledger,
+.ledger-grid,
+.ledger-grid div,
+.craft-steps li,
+.piece-card__meta,
+.marquee__track span,
+.appointment-form .field-group,
+.appointment-form__button,
+.seal-note {
+  position: relative;
+}
+
+.section-heading::after,
+.hero-ledger::before,
+.ledger-grid::before,
+.ledger-grid div::before,
+.craft-steps li::before,
+.piece-card__meta::before,
+.marquee__track span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--draw-line-color, color-mix(in srgb, var(--color-antique-gold) 28%, transparent));
+  transition: transform 1150ms var(--ease-ceremony);
+}
+
+.section-heading::after {
+  bottom: -1.2rem;
+  width: min(18rem, 58vw);
+}
+
+.hero-ledger,
+.ledger-grid,
+.ledger-grid div,
+.craft-steps li,
+.piece-card__meta {
+  border-color: transparent;
+}
+
+.hero-ledger::before,
+.ledger-grid::before,
+.ledger-grid div::before,
+.craft-steps li::before,
+.piece-card__meta::before {
+  top: 0;
+}
+
+.piece-card__meta::before {
+  --draw-line-color: color-mix(in srgb, var(--color-gilt-cream) 30%, transparent);
+}
+
+.marquee__track span::after {
+  bottom: -0.18rem;
+}
+
+.section-observed.is-visible .section-heading::after,
+.section-observed.is-visible .hero-ledger::before,
+.section-observed.is-visible .ledger-grid::before,
+.section-observed.is-visible .ledger-grid div::before,
+.section-observed.is-visible .craft-steps li::before,
+.section-observed.is-visible .piece-card__meta::before,
+.section-observed.is-visible .marquee__track span::after {
+  transform: scaleX(1);
+}
+
+.ledger-grid div:nth-child(2)::before,
+.craft-steps li:nth-child(2)::before,
+.marquee__track span:nth-child(2)::after {
+  transition-delay: 160ms;
+}
+
+.ledger-grid div:nth-child(3)::before,
+.craft-steps li:nth-child(3)::before,
+.marquee__track span:nth-child(3)::after {
+  transition-delay: 280ms;
+}
+
+.ledger-grid div:nth-child(4)::before,
+.marquee__track span:nth-child(4)::after {
+  transition-delay: 400ms;
+}
+
+.marquee__track span,
+.ledger-grid div,
+.craft-steps li,
+.appointment-form .field-group,
+.appointment-form__button,
+.seal-note {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 850ms var(--ease-ceremony),
+    transform 950ms var(--ease-ceremony);
+}
+
+.section-observed.is-visible .marquee__track span,
+.section-observed.is-visible .ledger-grid div,
+.section-observed.is-visible .craft-steps li,
+.section-observed.is-visible .appointment-form .field-group,
+.section-observed.is-visible .appointment-form__button,
+.section-observed.is-visible .seal-note {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.marquee__track span:nth-child(2),
+.ledger-grid div:nth-child(2),
+.craft-steps li:nth-child(2),
+.appointment-form .field-group:nth-child(2) {
+  transition-delay: 110ms;
+}
+
+.marquee__track span:nth-child(3),
+.ledger-grid div:nth-child(3),
+.craft-steps li:nth-child(3),
+.appointment-form .field-group:nth-child(3) {
+  transition-delay: 220ms;
+}
+
+.marquee__track span:nth-child(4),
+.ledger-grid div:nth-child(4),
+.appointment-form .field-group:nth-child(4),
+.appointment-form__button {
+  transition-delay: 330ms;
+}
+
+.seal-note {
+  transition-delay: 190ms;
+}
+
+.hero-image,
+.piece-card__image {
+  background-position: center;
+  transition:
+    transform 1300ms var(--ease-ceremony),
+    filter 1300ms var(--ease-ceremony),
+    background-position 1600ms var(--ease-ceremony);
+}
+
+.section-observed:not(.is-visible) .hero-image,
+.section-observed:not(.is-visible) .piece-card__image {
+  transform: scale(1.035);
+  filter: saturate(0.88) brightness(0.96);
+  background-position: center 58%;
+}
+
+@keyframes goldWave {
+  0% {
+    transform: translateX(-62%) scaleX(1.08);
+  }
+  100% {
+    transform: translateX(62%) scaleX(1.28);
+  }
+}
+
+@keyframes drawFiligree {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes glintDrift {
+  0% {
+    background-position: 8% 12%, 78% 24%, 46% 72%;
+  }
+  100% {
+    background-position: 16% 18%, 70% 30%, 52% 64%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ornament path {
+    stroke-dashoffset: 0;
+  }
+
+  .gold-wave-button::before {
+    transform: translateX(0) scaleX(1);
+  }
+
+  .gold-wave-button::after {
+    display: none;
+  }
+}
