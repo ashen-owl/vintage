@@ -1,0 +1,71 @@
+---
+import ObservedSection from "@components/ui/ObservedSection.astro";
+import Ornament from "@components/ui/Ornament.astro";
+import Eyebrow from "@components/ui/Eyebrow.astro";
+import { provenanceIntro, provenanceLedger } from "@data/provenance";
+import { provenanceOrnament } from "@data/ornaments";
+
+const titleId = `${provenanceIntro.id}-title`;
+---
+
+<ObservedSection
+  id={provenanceIntro.id}
+  labelledBy={titleId}
+  class="relative grid grid-cols-[1fr] desktop:grid-cols-[minmax(0,0.95fr)_minmax(18rem,0.85fr)] items-start gap-[clamp(2rem,5vw,5rem)] px-gutter py-section"
+>
+  <Ornament shape={provenanceOrnament} class="right-[2vw] bottom-8 tablet:w-[min(42rem,60vw)]" />
+
+  <div class="provenance-paper reveal relative p-[clamp(2rem,4vw,4rem)]">
+    <Eyebrow text={provenanceIntro.eyebrow} tone="lead" />
+    <h2 id={titleId} data-split>{provenanceIntro.title}</h2>
+    <p class="section-lead">{provenanceIntro.description}</p>
+  </div>
+
+  <dl class="ledger-grid reveal grid grid-cols-[1fr] gap-0 border-t border-transparent" style="--reveal-delay: 160ms">
+    {
+      provenanceLedger.map((entry) => (
+        <div class="grid grid-cols-[1fr] tablet:grid-cols-[8.5rem_1fr] gap-4 py-5 border-b border-transparent">
+          <dt class="font-utility text-[0.7rem] tracking-[0.12em] uppercase text-antique-gold">{entry.term}</dt>
+          <dd class="m-0 text-soft-ink">{entry.detail}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</ObservedSection>
+
+<style>
+  @layer components {
+    .provenance-paper {
+      border: 1px solid color-mix(in srgb, var(--color-antique-gold) 28%, transparent);
+      border-radius: var(--radius-soft);
+      background:
+        linear-gradient(
+          color-mix(in srgb, var(--color-porcelain) 90%, transparent),
+          color-mix(in srgb, var(--color-porcelain) 92%, transparent)
+        ),
+        repeating-linear-gradient(
+          0deg,
+          transparent 0 2.35rem,
+          color-mix(in srgb, var(--color-antique-gold) 8%, transparent) 2.35rem 2.42rem
+        );
+      box-shadow: 0 1.5rem 3rem color-mix(in srgb, var(--color-umber) 16%, transparent);
+    }
+
+    .provenance-paper::after {
+      content: "AT";
+      position: absolute;
+      right: 1.2rem;
+      bottom: 1rem;
+      width: 5.4rem;
+      height: 5.4rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid color-mix(in srgb, var(--color-wax-seal) 24%, transparent);
+      border-radius: 50%;
+      color: color-mix(in srgb, var(--color-wax-seal) 34%, transparent);
+      font-family: var(--font-utility);
+      letter-spacing: 0.08em;
+      transform: rotate(-12deg);
+    }
+  }
+</style>

@@ -1,13 +1,25 @@
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Aurelia & Thorn | Vintage Gold Jewellery</title>
-	</head>
-	<body>
-		<h1>Aurelia & Thorn | Vintage Gold Jewellery</h1>
-	</body>
-</html>
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Hero from "@components/Hero.astro";
+import ServiceStandards from "@components/ServiceStandards.astro";
+import Collection from "@components/Collection.astro";
+import Provenance from "@components/Provenance.astro";
+import Atelier from "@components/Atelier.astro";
+import Appointment from "@components/Appointment.astro";
+import Footer from "@components/Footer.astro";
+import { siteMeta } from "@data/site";
+---
+
+<BaseLayout meta={siteMeta}>
+  <Header />
+  <main id="main" class="relative z-1">
+    <Hero />
+    <ServiceStandards />
+    <Collection />
+    <Provenance />
+    <Atelier />
+    <Appointment />
+  </main>
+  <Footer />
+</BaseLayout>

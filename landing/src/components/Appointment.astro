@@ -1,0 +1,28 @@
+---
+import ObservedSection from "@components/ui/ObservedSection.astro";
+import Ornament from "@components/ui/Ornament.astro";
+import Eyebrow from "@components/ui/Eyebrow.astro";
+import VaultNote from "@components/ui/VaultNote.astro";
+import AppointmentForm from "@components/AppointmentForm.astro";
+import { appointmentIntro, reserveNote } from "@data/appointment";
+import { appointmentOrnament } from "@data/ornaments";
+
+const titleId = `${appointmentIntro.id}-title`;
+---
+
+<ObservedSection
+  id={appointmentIntro.id}
+  labelledBy={titleId}
+  class="relative grid grid-cols-[1fr] desktop:grid-cols-[minmax(0,0.9fr)_minmax(18rem,0.86fr)] items-start gap-[clamp(2rem,5vw,5rem)] px-gutter pt-section pb-[clamp(5rem,10vw,9rem)]"
+>
+  <Ornament shape={appointmentOrnament} class="top-8 left-1/2 -translate-x-1/2 tablet:w-[min(48rem,70vw)]" />
+
+  <div class="reveal">
+    <Eyebrow text={appointmentIntro.eyebrow} tone="lead" />
+    <h2 id={titleId} data-split>{appointmentIntro.title}</h2>
+    <p class="section-lead">{appointmentIntro.description}</p>
+    <VaultNote note={reserveNote} variant="seal" />
+  </div>
+
+  <AppointmentForm />
+</ObservedSection>

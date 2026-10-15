@@ -1,0 +1,164 @@
+---
+import BrandMark from "@components/ui/BrandMark.astro";
+import GoldWaveButton from "@components/ui/GoldWaveButton.astro";
+import {
+  brandHomeLink,
+  headerAriaLabel,
+  headerCta,
+  menuCloseLabel,
+  menuOpenLabel,
+  navAriaLabel,
+  primaryNav,
+} from "@data/navigation";
+
+const menuId = "site-menu";
+---
+
+<header
+  class="relative tablet:sticky top-0 z-10 flex items-center justify-between menu:grid menu:grid-cols-[auto_1fr_auto] gap-[clamp(1rem,2vw,2rem)] px-gutter pt-4 pb-[0.9rem] tablet:pt-[0.9rem] border-b border-antique-gold/18 bg-porcelain/84 backdrop-blur-[18px]"
+  aria-label={headerAriaLabel}
+>
+  <BrandMark href={brandHomeLink.href} ariaLabel={brandHomeLink.label} />
+
+  <button class="menu-toggle menu:hidden" type="button" popovertarget={menuId} aria-label={menuOpenLabel}>
+    <span class="menu-toggle__line"></span>
+    <span class="menu-toggle__line"></span>
+    <span class="menu-toggle__line"></span>
+  </button>
+
+  <div class="site-menu" id={menuId} popover data-site-menu>
+    <button
+      class="menu-close self-end menu:hidden"
+      type="button"
+      popovertarget={menuId}
+      popovertargetaction="hide"
+      aria-label={menuCloseLabel}
+    ></button>
+    <nav
+      class="flex flex-col items-start gap-6 menu:flex-row menu:items-center menu:justify-self-center menu:gap-[clamp(0.7rem,2vw,1.7rem)] font-utility text-[0.9rem] menu:text-[0.72rem] tracking-[0.14em] uppercase whitespace-nowrap"
+      aria-label={navAriaLabel}
+    >
+      {primaryNav.map((link) => <a class="underline-draw" href={link.href}>{link.label}</a>)}
+    </nav>
+    <GoldWaveButton href={headerCta.href} size="small" class="max-menu:mt-auto max-menu:w-full">
+      {headerCta.label}
+    </GoldWaveButton>
+  </div>
+</header>
+
+<script>
+  import { initHeaderMenu } from "@scripts/header-menu";
+
+  initHeaderMenu();
+</script>
+
+<style>
+  @layer components {
+    .menu-toggle {
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 0.32rem;
+      width: 2.75rem;
+      height: 2.75rem;
+      border: 1px solid color-mix(in srgb, var(--color-antique-gold) 40%, transparent);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--color-porcelain) 90%, transparent);
+      transition: border-color 280ms ease, box-shadow 280ms ease;
+    }
+
+    .menu-toggle:hover {
+      border-color: var(--color-antique-gold);
+      box-shadow: 0 0.5rem 1.2rem color-mix(in srgb, var(--color-antique-gold) 14%, transparent);
+    }
+
+    .menu-toggle__line {
+      width: 1.1rem;
+      height: 1px;
+      background: var(--color-old-ink);
+    }
+
+    .menu-close {
+      position: relative;
+      width: 2.75rem;
+      height: 2.75rem;
+      border: 1px solid color-mix(in srgb, var(--color-antique-gold) 40%, transparent);
+      border-radius: 999px;
+    }
+
+    .menu-close::before,
+    .menu-close::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1.1rem;
+      height: 1px;
+      background: var(--color-old-ink);
+      translate: -50% -50%;
+      rotate: 45deg;
+    }
+
+    .menu-close::after {
+      rotate: -45deg;
+    }
+
+    @media (width < 62rem) {
+      .site-menu {
+        position: fixed;
+        inset: 0 0 0 auto;
+        width: min(22rem, 86vw);
+        height: 100dvh;
+        max-height: none;
+        margin: 0;
+        padding: 1.2rem var(--spacing-gutter) 2rem;
+        overflow-y: auto;
+        border: 0;
+        border-left: 1px solid color-mix(in srgb, var(--color-antique-gold) 24%, transparent);
+        color: var(--color-old-ink);
+        background: var(--color-porcelain);
+        box-shadow: -1.5rem 0 3rem color-mix(in srgb, var(--color-umber) 16%, transparent);
+        translate: 100% 0;
+        transition:
+          translate 420ms var(--ease-ceremony),
+          display 420ms allow-discrete,
+          overlay 420ms allow-discrete;
+      }
+
+      .site-menu:popover-open {
+        display: flex;
+        flex-direction: column;
+        gap: 2.4rem;
+        translate: 0 0;
+      }
+
+      .site-menu::backdrop {
+        background: color-mix(in srgb, var(--color-old-ink) 0%, transparent);
+        transition:
+          background-color 420ms ease,
+          display 420ms allow-discrete,
+          overlay 420ms allow-discrete;
+      }
+
+      .site-menu:popover-open::backdrop {
+        background: color-mix(in srgb, var(--color-old-ink) 28%, transparent);
+      }
+
+      @starting-style {
+        .site-menu:popover-open {
+          translate: 100% 0;
+        }
+
+        .site-menu:popover-open::backdrop {
+          background: color-mix(in srgb, var(--color-old-ink) 0%, transparent);
+        }
+      }
+    }
+
+    @media (width >= 62rem) {
+      .site-menu {
+        display: contents;
+      }
+    }
+  }
+</style>

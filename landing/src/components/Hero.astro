@@ -1,0 +1,68 @@
+---
+import ObservedSection from "@components/ui/ObservedSection.astro";
+import Ornament from "@components/ui/Ornament.astro";
+import Eyebrow from "@components/ui/Eyebrow.astro";
+import GoldWaveButton from "@components/ui/GoldWaveButton.astro";
+import TextLink from "@components/ui/TextLink.astro";
+import ImagePanel from "@components/ui/ImagePanel.astro";
+import VaultNote from "@components/ui/VaultNote.astro";
+import {
+  heroActions,
+  heroActionsAriaLabel,
+  heroImage,
+  heroIntro,
+  heroPromises,
+  heroPromisesAriaLabel,
+  heroVaultNote,
+} from "@data/hero";
+import { heroOrnament } from "@data/ornaments";
+
+const titleId = "hero-title";
+const lastPromiseIndex = heroPromises.length - 1;
+---
+
+<ObservedSection
+  id={heroIntro.id}
+  labelledBy={titleId}
+  class="relative grid grid-cols-[1fr] desktop:grid-cols-[minmax(0,0.95fr)_minmax(20rem,0.78fr)] items-center gap-[2.2rem] tablet:gap-[clamp(2rem,5vw,5.5rem)] desktop:min-h-[calc(100svh-5rem)] px-gutter pt-[3.3rem] tablet:pt-[clamp(3.5rem,7vw,6rem)] pb-[calc(var(--spacing-section)+4rem)] desktop:pb-section"
+>
+  <Ornament shape={heroOrnament} class="top-[4.2rem] right-[clamp(-6rem,-8vw,-2rem)] tablet:w-[min(50rem,56vw)]" />
+
+  <div class="reveal max-w-[46rem]">
+    <Eyebrow text={heroIntro.eyebrow} />
+    <h1 id={titleId} data-split>{heroIntro.title}</h1>
+    <p class="section-lead">{heroIntro.description}</p>
+    <div
+      class="mt-8 flex flex-wrap flex-col items-stretch md:flex-row md:items-center gap-x-[1.35rem] gap-y-4"
+      aria-label={heroActionsAriaLabel}
+    >
+      <GoldWaveButton href={heroActions.primary.href}>{heroActions.primary.label}</GoldWaveButton>
+      <TextLink href={heroActions.secondary.href} class="max-md:self-center max-md:after:origin-center">{heroActions.secondary.label}</TextLink>
+    </div>
+  </div>
+
+  <div class="hero__vitrine reveal w-full desktop:w-[min(100%,34rem)] desktop:justify-self-end" style="--reveal-delay: 160ms">
+    <ImagePanel image={heroImage} variant="hero" class="min-h-[27rem] tablet:min-h-[clamp(31rem,55vw,44rem)]">
+      <VaultNote note={heroVaultNote} variant="assay" />
+    </ImagePanel>
+  </div>
+
+  <aside
+    class="hero-ledger reveal static tablet:relative inset-x-gutter bottom-4 mx-gutter mt-4 tablet:m-0 grid grid-cols-[1fr] tablet:grid-cols-[repeat(3,1fr)] gap-3 border-t border-transparent pt-4 text-soft-ink font-utility text-[clamp(0.65rem,1vw,0.76rem)] tracking-[0.16em] uppercase"
+    style="--reveal-delay: 280ms"
+    aria-label={heroPromisesAriaLabel}
+  >
+    {
+      heroPromises.map((promise, index) => (
+        <span
+          class:list={[
+            index < lastPromiseIndex &&
+              "border-b border-antique-gold/18 pb-[0.7rem] tablet:border-b-0 tablet:pb-0 tablet:border-r tablet:border-r-antique-gold/20",
+          ]}
+        >
+          {promise}
+        </span>
+      ))
+    }
+  </aside>
+</ObservedSection>

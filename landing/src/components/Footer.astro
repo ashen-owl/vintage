@@ -1,0 +1,13 @@
+---
+import BrandMark from "@components/ui/BrandMark.astro";
+import TextLink from "@components/ui/TextLink.astro";
+import { footerBackLink, footerTagline } from "@data/footer";
+---
+
+<footer
+  class="relative z-1 flex flex-wrap flex-col items-start tablet:flex-row tablet:items-center justify-between gap-4 px-gutter py-8 border-t border-antique-gold/22 text-soft-ink bg-old-lace/34"
+>
+  <BrandMark />
+  <p class="m-0">{footerTagline}</p>
+  <TextLink href={footerBackLink.href}>{footerBackLink.label}</TextLink>
+</footer>
